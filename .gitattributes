@@ -1,0 +1,45 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+#
+# C# and .NET files
+#
+*.cs text diff=csharp
+*.sln text eol=crlf
+*.csproj text
+*.config text
+*.resx text
+
+#
+# Web / Frontend files (task-ui)
+#
+*.ts text diff=javascript
+*.tsx text diff=javascript
+*.js text diff=javascript
+*.jsx text diff=javascript
+*.html text diff=html
+*.css text diff=css
+*.scss text diff=css
+*.json text
+*.md text
+*.yml text
+*.yaml text
+
+#
+# Shell scripts
+#
+*.sh text eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+#
+# Image and binary files
+#
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg text
+*.dll binary
+*.exe binary
