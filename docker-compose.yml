@@ -1,6 +1,8 @@
 services:
   api:
-    build: .
+    build:
+      context: ./TASKe/TASKe/TASKe
+      dockerfile: Dockerfile
     ports:
       - "5000:8080"
     depends_on:
@@ -15,6 +17,15 @@ services:
       - "1434:1433"
     volumes:
       - sql_data:/var/opt/mssql
+
+  frontend:
+    build:
+      context: ./task-ui
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
 
 volumes:
   sql_data:
