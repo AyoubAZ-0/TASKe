@@ -7,4 +7,11 @@ RUN npm run build
 
 FROM nginx:alpine
 COPY --from=build /app/dist /usr/share/nginx/html
-RUN echo $'server { \\\n    listen 80; \\\n    location / { \\\n        root /usr/share/nginx/html; \\\n        index index.html index.htm; \\\n        try_files $uri $uri/ /index.html; \\\n    } \\\n}' > /etc/nginx/conf.d/default.conf
+RUN echo 'server { \
+    listen 80; \
+    location / { \
+        root /usr/share/nginx/html; \
+        index index.html index.htm; \
+        try_files $uri $uri/ /index.html; \
+    } \
+}' > /etc/nginx/conf.d/default.conf
