@@ -1,7 +1,7 @@
 services:
   api:
     build:
-      context: ./TASKe/TASKe/TASKe
+      context: ./TASKe/TASKe
       dockerfile: Dockerfile
     ports:
       - "5000:8080"
