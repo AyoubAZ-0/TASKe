@@ -1,8 +1,3 @@
-// Application/Services/TaskService.cs
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TASKe.Data;
 using TASKe.Models;
@@ -22,10 +17,8 @@ public class TaskService
         {
             return await _context.Tasks.ToListAsync();
         }
-        else
-        {
-            return await _context.Tasks.Where(t => t.AssignedToUserId == userId).ToListAsync();
-        }
+
+        return await _context.Tasks.Where(t => t.AssignedToUserId == userId).ToListAsync();
     }
 
     public async Task<Taskitem> CreateTask(string title, string desc, Guid userId)
@@ -46,14 +39,11 @@ public class TaskService
     public async Task<bool> UpdateStatus(Guid taskId, Guid userId, string newStatus)
     {
         var task = await _context.Tasks.FindAsync(taskId);
-
         if (task == null) return false;
 
-        // Only assigned user can update
         if (task.AssignedToUserId != userId)
             return false;
 
-        // Simple state rules
         if (task.Status == "NotStarted" && newStatus == "Ongoing")
             task.Status = "Ongoing";
         else if (task.Status == "Ongoing" && newStatus == "Done")

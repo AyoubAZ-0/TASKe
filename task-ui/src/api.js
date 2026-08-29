@@ -46,10 +46,6 @@ export const api = {
   },
 
   getTasks: async (userId, role) => {
-    // Note: The backend requirements didn't explicitly specify a GET /tasks endpoint, 
-    // but we need it to display the dashboard. Assuming it exists at GET /tasks or similar.
-    // If not, we might need a workaround, but for a typical REST API this would exist.
-    // For now, let's assume GET /tasks with userId works to filter for users.
     const res = await fetch(`${API_BASE}/tasks?userId=${userId}&role=${role}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' }

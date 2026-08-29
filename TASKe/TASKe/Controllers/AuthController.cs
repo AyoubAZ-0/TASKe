@@ -1,12 +1,11 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TASKe.Controllers
 {
     public class AuthDto
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
         public string? Role { get; set; }
     }
 
@@ -24,8 +23,7 @@ namespace TASKe.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] AuthDto request)
         {
-            var user = await _auth.Register(request.Email, request.Password);
-            // Optionally set Role if the service supports it
+            var user = await _auth.Register(request.Email, request.Password, request.Role ?? "User");
             return Ok(user);
         }
 

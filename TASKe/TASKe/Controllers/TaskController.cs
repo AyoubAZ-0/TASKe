@@ -1,14 +1,11 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using TASKe.Models;
 
 namespace TASKe.Controllers
 {
     public class CreateTaskDto
     {
-        public string Title { get; set; }
-        public string Desc { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public string Desc { get; set; } = string.Empty;
         public Guid UserId { get; set; }
     }
 
@@ -23,7 +20,6 @@ namespace TASKe.Controllers
             _service = service;
         }
 
-        // Get tasks based on user role
         [HttpGet]
         public async Task<IActionResult> GetTasks([FromQuery] Guid userId, [FromQuery] string role)
         {
@@ -31,7 +27,6 @@ namespace TASKe.Controllers
             return Ok(tasks);
         }
 
-        // Admin assigns task
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateTaskDto request)
         {
@@ -39,7 +34,6 @@ namespace TASKe.Controllers
             return Ok(task);
         }
 
-        // User updates status
         [HttpPut("{id}/status")]
         public async Task<IActionResult> UpdateStatus(Guid id, [FromQuery] Guid userId, [FromQuery] string status)
         {
@@ -47,6 +41,5 @@ namespace TASKe.Controllers
             if (!result) return BadRequest();
             return Ok();
         }
-
     }
 }

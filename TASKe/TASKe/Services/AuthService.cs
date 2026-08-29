@@ -1,6 +1,4 @@
-﻿// Application/Services/AuthService.cs
 using Microsoft.EntityFrameworkCore;
-using System;
 using TASKe.Data;
 using TASKe.Models;
 
@@ -18,7 +16,7 @@ public class AuthService
         var user = new User
         {
             Email = email,
-            PasswordHash = password, // later: hash this
+            PasswordHash = password,
             Role = role
         };
 
